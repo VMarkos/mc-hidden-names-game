@@ -1,3 +1,3 @@
 # README
 
-Simle game, where you have to recall the correct positions of all 9 names appearing.
+Simple game, where you have to recall the correct positions of all 9 names appearing.
