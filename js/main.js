@@ -25,6 +25,8 @@ let GUESS_SUBMITTED = true;
 
 let GAME_STARTED = false;
 
+let startTime, endTime;
+
 function initCards() {
     const cardsContainer = document.getElementById("game-grid");
     let card;
@@ -51,6 +53,7 @@ function startGame(restart = false) {
         toggleCard(`radio-${CURRENT_INDEX}`);
         guess.disabled = false;
         guess.focus();
+        startTime = Date.now();
     }, restart ? 0 : 5000);
 }
 
@@ -67,7 +70,9 @@ function submitGuess(event) {
         alert("You lost! A new game will start now!");
         windowInit(false);
     } else if (SECRET_QUEUE.length === 0) {
-        alert("You won!");
+        endTime = Date.now();
+        unveilCard(CURRENT_INDEX);
+        alert(`You won! Duration: ${(endTime - startTime) / 1000} seconds.`);
         windowInit();
     } else {
         unveilCard(CURRENT_INDEX);
@@ -108,7 +113,8 @@ function createCard(index, content) {
     cardRadio.classList.add("radio-hack");
     cardRadio.id = `radio-${index}`;
     cardRadio.type = "radio";
-    cardRadio.name = "radio-hack"
+    cardRadio.name = "radio-hack";
+    cardRadio.disabled = true;
     cardLabel.id = `card-${index}`;
     cardLabel.classList.add("grid-card");
     cardLabel.textContent = content;

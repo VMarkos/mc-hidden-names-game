@@ -34,17 +34,11 @@ main {
     border-radius: 5px;
     padding: 10px;
     text-align: center;
-    cursor: pointer;
     user-select: none;
 }
 
 .radio-hack:checked + .grid-card {
     background-color: #404040;
-    color: white;
-}
-
-.grid-card:hover {
-    background-color: #808080;
     color: white;
 }
 
